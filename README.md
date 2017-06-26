@@ -1,4 +1,6 @@
-# expo-download-and-play-video
+# Expo download and play video - example
+Expo: https://expo.io/@florentroques/expo-download-and-play-video  
+
 Example for a workaround to download, store/cache and then play a remote video before a new implementation of Expo FileSystem  
 
 **Expo SDK version at the time of the example**: 18
