@@ -1,7 +1,7 @@
 # Expo download and play video - example
 [Try on Expo](https://expo.io/@florentroques/expo-download-and-play-video)
 
-Example for a workaround (before a new implementation of Expo FileSystem which would ease  to
+Example for a workaround (with undocumented FileSystem API for now) to
 1. download a remote video
 2. store/cache it
 3. play it 
