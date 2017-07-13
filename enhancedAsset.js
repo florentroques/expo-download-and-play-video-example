@@ -27,11 +27,11 @@ Asset.prototype.downloadAsyncWithoutHash = async function({ cache }) {
   const path = `${this.name}.${this.type}`;
 
   if (this.downloaded) {
-    console.log('asset already downloaded');
+    __DEV__ && console.log('asset already downloaded');
     return;
   }
   if (this.downloading) {
-    console.log('asset downloading');
+    __DEV__ && console.log('asset downloading');
     await new Promise((resolve, reject) =>
       this.downloadCallbacks.push({ resolve, reject })
     );
@@ -51,21 +51,19 @@ Asset.prototype.downloadAsyncWithoutHash = async function({ cache }) {
       cache, //shorthand for cache: cache
     }));
 
-    console.log(`${path} ${exists ? 'already downloaded':'not downloaded'}`);
-    console.log('________________________');
-    if (exists) {
-      // console.log(`md5: ${md5}`);
-      // console.log(`this.hash: ${this.hash}`);
-      console.log(`filepath: ${uri
-        .replace('file://', '')
-        .replace(/%25/g,'%')
-      }`);
+    if (__DEV__) {
+      console.log(`${path} ${exists ? 'already downloaded':'not downloaded'}`);
+      console.log('________________________');
+      if (exists) {
+        console.log(`filepath: ${uri
+          .replace('file://', '')
+          .replace(/%25/g,'%')
+        }`);
+      }
     }
 
-    if (!exists
-      || (this.hash && md5 !== this.hash)
-    ) {
-      console.log('downloading it');
+    if (!exists) {
+      __DEV__ && console.log('downloading it');
       ({
         uri,
       } = await NativeModules.ExponentFileSystem.downloadAsync(
